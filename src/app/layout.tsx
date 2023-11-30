@@ -1,9 +1,12 @@
 import '@/styles/globals.css'
 
+import { ThemeProvider } from '@/components/theme-provider'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { cookies } from 'next/headers'
 
+import Navbar from '@/components/Navbar'
+import { cn } from '@/lib/utils'
 import { TRPCReactProvider } from '@/trpc/react'
 
 const inter = Inter({
@@ -23,9 +26,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>
+      <body
+        className={cn(
+          'min-h-screen bg-background font-sans antialiased',
+          inter.variable
+        )}
+      >
         <TRPCReactProvider cookies={cookies().toString()}>
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            disableTransitionOnChange
+          >
+            <Navbar />
+            {children}
+          </ThemeProvider>
         </TRPCReactProvider>
       </body>
     </html>
