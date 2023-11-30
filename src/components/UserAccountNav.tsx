@@ -25,8 +25,8 @@ const UserAccountNav = async ({
 }: UserAccountNavProps) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className="overflow-visible">
-        <Button className="rounded-full h-8 w-8 aspect-square bg-slate-400">
+      <DropdownMenuTrigger asChild className="overflow-visible border-0">
+        <Button className="rounded-full h-8 w-8 aspect-square dark:ring-1 border-0">
           <Avatar className="relative w-8 h-8">
             {imageUrl ? (
               <div className="relative aspect-square h-full w-full">
@@ -39,23 +39,19 @@ const UserAccountNav = async ({
               </div>
             ) : (
               <AvatarFallback>
-                <span className="sr-only">{name.substring(0, 20)}</span>
-                <Icons.user className="h-4 w-4 text-zinc-900" />
+                <span className="sr-only">{name}</span>
+                <Icons.user className="h-4 w-4 text-foreground" />
               </AvatarFallback>
             )}
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-white" align="end">
+      <DropdownMenuContent className="bg-muted" align="end">
         <div className="flex items-center justify-start gap-2 p-2">
           <div className="flex flex-col space-y-0.5 leading-none">
-            {name && (
-              <p className="font-medium text-sm text-black">
-                {name.substring(0, 20)}
-              </p>
-            )}
+            {name && <p className="font-medium text-sm">{name}</p>}
             {email && (
-              <p className="w-[200px] truncate text-xs text-zinc-700">
+              <p className="w-[200px] truncate text-xs text-foreground">
                 {email}
               </p>
             )}
@@ -75,7 +71,7 @@ const UserAccountNav = async ({
           )}
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer">
+        <DropdownMenuItem className="cursor-pointer justify-end">
           <Link
             href="/"
             className={buttonVariants({
