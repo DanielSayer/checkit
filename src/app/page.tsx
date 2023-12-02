@@ -8,18 +8,19 @@ export default function Home() {
   return (
     <>
       <MaxWidthWrapper className="mb-12 mt-28 sm:mt-40 flex flex-col items-center justify-center text-center">
-        <div className="mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-gray-200 bg-white px-7 py-2 shadow-md backdrop-blur transition-all hover:border-gray-300 hover:bg-white/50">
-          <p className="text-sm font-semibold text-gray-700">
-            release is now public!
+        <div className="mx-auto mb-4 flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full border border-foreground/50 px-7 py-2 shadow-md backdrop-blur transition-all hover:bg-background/50 hover:border-primary">
+          <p className="text-sm font-semibold text-foreground/75">
+            checkit is now public!
           </p>
         </div>
         <h1 className="max-w-4xl text-5xl font-bold md:text-6xl lg:text-7xl">
-          Create amazing <span className="text-violet-600">notes</span> in
+          Organise your <span className="text-primary">thoughts</span> in
           seconds.
         </h1>
-        <p className="mt-5 max-w-prose text-zinc-700 sm:text-lg">
-          release allows you to create notes straight from your voice. Simply
-          start talking and we&apos;ll make your notes for you.
+        <p className="mt-5 max-w-prose text-foreground/75 sm:text-lg">
+          checkit allows you to create, organise and store notes all in one
+          place. Simply start making notes and we&apos;ll make sort out the rest
+          for you.
         </p>
         <Link
           className={buttonVariants({
@@ -82,10 +83,10 @@ export default function Home() {
       <div className="mx-auto mb-32 mt-32 max-w-5xl sm:mt-56">
         <div className="mb-12 px-6 lg:px-8">
           <div className="mx-auto max-w-2xl sm: text-center">
-            <h2 className="mt-2 font-bold text-4xl text-gray-900 sm:text-5xl">
+            <h2 className="mt-2 font-bold text-4xl text-foreground sm:text-5xl">
               Start creating notes in minutes
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-foreground/75">
               Creating awesome voice notes has never been easier with release
             </p>
           </div>
@@ -94,17 +95,15 @@ export default function Home() {
         <ol className="my-8 space-y-4 pt-8 md:flex md:space-x-12 md:space-y-0">
           <li className="md:flex-1">
             <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:px-2 md:pt-4">
-              <span className="text-sm font-medium text-violet-600">
-                Step 1
-              </span>
-              <span className="text-xl font-semibold">
+              <span className="text-sm text-primary font-semibold">Step 1</span>
+              <span className="text-xl font-semibold text-foreground/80">
                 Sign up for an account
               </span>
-              <span className="mt-2 text-zinc-700">
+              <span className="mt-2 text-foreground/70">
                 Either starting out with a free plan or choose our{' '}
                 <Link
                   href="/pricing"
-                  className="text-violet-700 underline underline-offset-2"
+                  className="text-primary underline underline-offset-2"
                 >
                   pro plan
                 </Link>
@@ -114,26 +113,25 @@ export default function Home() {
           </li>
           <li className="md:flex-1">
             <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:px-2 md:pt-4">
-              <span className="text-sm font-medium text-violet-600">
-                Step 2
+              <span className="text-sm text-primary font-semibold">Step 2</span>
+              <span className="text-xl font-semibold text-foreground/80">
+                Create your notes
               </span>
-              <span className="text-xl font-semibold">Hit record</span>
-              <span className="mt-2 text-zinc-700">
-                Start talking, brain dump, release emotions
+              <span className="mt-2 text-foreground/70">
+                Create notes, with your voice, upload them or just type them
+                out.
               </span>
             </div>
           </li>
           <li className="md:flex-1">
             <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:px-2 md:pt-4">
-              <span className="text-sm font-medium text-violet-600">
-                Step 3
+              <span className="text-sm text-primary font-semibold">Step 3</span>
+              <span className="text-xl font-semibold text-foreground/80">
+                Get stuff done!
               </span>
-              <span className="text-xl font-semibold">
-                Check out your notes
-              </span>
-              <span className="mt-2 text-zinc-700">
-                It&apos;s really that simple, from here you can ask questions or
-                even download them!
+              <span className="mt-2 text-foreground/70">
+                That&apos;s it, we&apos;ll keep you on track and keep your notes
+                organised for you.
               </span>
             </div>
           </li>
@@ -143,7 +141,7 @@ export default function Home() {
           <div className="mt-16 flow-root sm:mt-24">
             <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
               <Image
-                src="/dashboard-preview.jpg"
+                src="/notification-preview.jpg"
                 alt="product preview"
                 width={1364}
                 height={866}
