@@ -18,11 +18,7 @@ interface UserAccountNavProps {
   name: string
 }
 
-const UserAccountNav = async ({
-  email,
-  imageUrl,
-  name,
-}: UserAccountNavProps) => {
+const UserAccountNav = ({ email, imageUrl, name }: UserAccountNavProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="overflow-visible border-0">

@@ -2,7 +2,8 @@
 import { ArrowRight, Menu } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { Button } from './ui/button'
 
 interface MobileNavProps {
   isAuth: boolean
@@ -13,52 +14,47 @@ const MobileNav = ({ isAuth }: MobileNavProps) => {
   const toggleOpen = () => setIsOpen((prev) => !prev)
   const pathName = usePathname()
 
-  useEffect(() => {
-    if (isOpen) {
-      toggleOpen()
-    }
-  }, [pathName])
-
   const closeOnCurrent = (href: string) => {
     if (pathName === href) {
       toggleOpen()
     }
   }
+
   return (
     <div className="sm:hidden">
       <Menu
         onClick={toggleOpen}
-        className="relative z-50 h-5 w-5 text-zinc-700"
+        className="relative z-50 h-5 w-5 text-muted-foreground"
       />
       {isOpen ? (
         <div className="fixed animate-in slide-in-from-top-5 fade-in-20 inset-0 z-0 w-full">
-          <ul className="absolute bg-white border-b border-zinc-200 shadow-xl grid w-full gap-3 px-10 pt-20 pb-8">
+          <ul className="absolute border-b bg-background shadow-xl grid w-full gap-3 px-10 pt-20 pb-8">
             {!isAuth ? (
               <>
                 <li>
                   <Link
                     onClick={() => closeOnCurrent('/sign-up')}
-                    className="flex items-center w-full font-semibold text-green-600"
+                    className="flex items-center w-full font-semibold text-foreground/90"
                     href={'/sign-up'}
                   >
                     Get Started <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </li>
-                <li className="my-3 h-px w-full bg-gray-300" />
+                <li className="my-3 h-px w-full bg-muted-foreground/50" />
                 <li>
                   <Link
+                    href="/api/auth/signin"
                     onClick={() => closeOnCurrent('/sign-in')}
-                    className="flex items-center w-full font-semibold"
-                    href={'/sign-in'}
+                    className="flex items-center w-full font-semibold text-foreground/90"
                   >
                     Sign in
                   </Link>
                 </li>
-                <li className="my-3 h-px w-full bg-gray-300" />
+                <li className="my-3 h-px w-full bg-muted-foreground/50" />
                 <li>
                   <Link
                     onClick={() => closeOnCurrent('/pricing')}
-                    className="flex items-center w-full font-semibold"
+                    className="flex items-center w-full font-semibold text-foreground/90"
                     href={'/pricing'}
                   >
                     Pricing
@@ -76,7 +72,7 @@ const MobileNav = ({ isAuth }: MobileNavProps) => {
                     Dashboard
                   </Link>
                 </li>
-                <li className="my-3 h-px w-full bg-gray-300" />
+                <li className="my-3 h-px w-full bg-muted-foreground/50" />
                 <li>
                   <Link
                     className="flex items-center w-full font-semibold"

@@ -1,11 +1,15 @@
+'use client'
 import Link from 'next/link'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import MobileNav from './MobileNav'
 import UserAccountNav from './UserAccountNav'
 import { buttonVariants } from './ui/button'
 import { ThemeToggle } from './ThemeToggle'
+import { useSession } from 'next-auth/react'
 
-const Navbar = async () => {
+const Navbar = () => {
+  const { data: session } = useSession()
+
   return (
     <nav className="sticky h-14 inset-x-0 top-0 z-30 w-full border-b bg-background/80 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
@@ -14,7 +18,7 @@ const Navbar = async () => {
             <span>checkit</span>
           </Link>
 
-          <MobileNav isAuth={true} />
+          <MobileNav isAuth={!!session} />
           <div className="hidden items-center space-x-4 sm:flex">
             <Link
               href="/dashboard"
@@ -26,9 +30,9 @@ const Navbar = async () => {
               Dashboard
             </Link>
             <UserAccountNav
-              name={'User'}
-              email={'user@test.com'}
-              imageUrl={''}
+              name={session?.user.name ?? ''}
+              email={session?.user.email ?? ''}
+              imageUrl={session?.user.image ?? ''}
             />
             <ThemeToggle />
           </div>
