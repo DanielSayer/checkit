@@ -59,12 +59,15 @@ const UserAccountNav = ({ email, imageUrl, name }: UserAccountNavProps) => {
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           {true ? (
-            <Link href="/dashboard/billing">Manage Subscription</Link>
+            <Link href="/dashboard/billing">TODO: //Manage Sub</Link>
           ) : (
             <Link href="/pricing">
-              Upgrade <Gem className="text-violet-500 h-4 w-4 ml-1.5" />
+              Upgrade <Gem className="text-primary h-4 w-4 ml-1.5" />
             </Link>
           )}
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href="/settings">Settings</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="cursor-pointer justify-end">

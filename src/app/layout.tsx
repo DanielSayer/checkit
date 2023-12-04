@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils'
 import { TRPCReactProvider } from '@/trpc/react'
 
 import SessionProvider from '@/components/SessionProvider'
-import { getServerSession } from 'next-auth'
+import { getServerAuthSession } from '@/server/auth'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -27,7 +27,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const session = await getServerSession()
+  const session = await getServerAuthSession()
   return (
     <html lang="en">
       <body
