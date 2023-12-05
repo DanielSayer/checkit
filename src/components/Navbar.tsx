@@ -34,7 +34,7 @@ const Navbar = () => {
                   Pricing
                 </Link>
                 <Link
-                  href={'/api/auth/signin'}
+                  href={'/sign-in'}
                   className={buttonVariants({
                     variant: 'ghost',
                     size: 'sm',
@@ -43,7 +43,7 @@ const Navbar = () => {
                   Sign in
                 </Link>
                 <Link
-                  href={'/api/auth/signin'}
+                  href={'/sign-in'}
                   className={buttonVariants({
                     size: 'sm',
                   })}
