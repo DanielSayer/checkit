@@ -72,7 +72,7 @@ const UserAccountNav = ({ email, imageUrl, name }: UserAccountNavProps) => {
         <DropdownMenuSeparator />
         <DropdownMenuItem className="cursor-pointer justify-end">
           <Link
-            href="/"
+            href="/api/auth/signout"
             className={buttonVariants({
               size: 'sm',
             })}

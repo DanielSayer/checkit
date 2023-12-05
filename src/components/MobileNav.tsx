@@ -2,7 +2,7 @@
 import {
   authorizedNavOptions,
   notAuthorizedNavOptions,
-} from '@/lib/constants/mobileNavOptions'
+} from '@/lib/constants/MobileNavOptions'
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
