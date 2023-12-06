@@ -13,7 +13,10 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from '@/components/ui/use-toast'
 import { Loader2 } from 'lucide-react'
-import { BiLogoGoogle as Google } from 'react-icons/bi'
+import {
+  BiLogoGoogle as Google,
+  BiLogoDiscordAlt as Discord,
+} from 'react-icons/bi'
 
 type FormData = z.infer<typeof userAuthSchema>
 
@@ -27,7 +30,9 @@ const UserAuthForm = () => {
   })
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [isGoogleLoading, setIsGoogleLoading] = React.useState<boolean>(false)
+  const [isDiscordLoading, setIsDiscordLoading] = React.useState<boolean>(false)
   const searchParams = useSearchParams()
+  const callbackUrl = searchParams?.get('from') || '/dashboard'
 
   const onSubmit = async (data: FormData) => {
     setIsLoading(true)
@@ -35,7 +40,7 @@ const UserAuthForm = () => {
     const signInResult = await signIn('email', {
       email: data.email.toLowerCase(),
       redirect: false,
-      callbackUrl: searchParams?.get('from') || '/dashboard',
+      callbackUrl: callbackUrl,
     })
 
     setIsLoading(false)
@@ -94,22 +99,40 @@ const UserAuthForm = () => {
           </span>
         </div>
       </div>
-      <Button
-        type="submit"
-        variant="outline"
-        onClick={() => {
-          setIsGoogleLoading(true)
-          signIn('google')
-        }}
-        disabled={isLoading || isGoogleLoading}
-      >
-        {isGoogleLoading ? (
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
-          <Google className="mr-2 h-4 w-4" />
-        )}{' '}
-        Google
-      </Button>
+      <div className="flex flex-col gap-2">
+        <Button
+          type="submit"
+          variant="outline"
+          onClick={() => {
+            setIsGoogleLoading(true)
+            signIn('google', { callbackUrl: callbackUrl })
+          }}
+          disabled={isLoading || isGoogleLoading}
+        >
+          {isGoogleLoading ? (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <Google className="mr-2 h-4 w-4" />
+          )}{' '}
+          Google
+        </Button>
+        <Button
+          type="submit"
+          variant="outline"
+          onClick={() => {
+            setIsDiscordLoading(true)
+            signIn('discord', { callbackUrl: callbackUrl })
+          }}
+          disabled={isLoading || isGoogleLoading}
+        >
+          {isDiscordLoading ? (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <Discord className="mr-2 h-4 w-4" />
+          )}{' '}
+          Discord
+        </Button>
+      </div>
     </div>
   )
 }
