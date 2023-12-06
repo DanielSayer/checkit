@@ -3,9 +3,9 @@ import Link from 'next/link'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import MobileNav from './MobileNav'
 import UserAccountNav from './UserAccountNav'
-import { buttonVariants } from './ui/button'
+import { Button, buttonVariants } from './ui/button'
 import { ThemeToggle } from './ThemeToggle'
-import { useSession } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import { ArrowRight } from 'lucide-react'
 
 const Navbar = () => {
@@ -33,23 +33,12 @@ const Navbar = () => {
                 >
                   Pricing
                 </Link>
-                <Link
-                  href={'/sign-in'}
-                  className={buttonVariants({
-                    variant: 'ghost',
-                    size: 'sm',
-                  })}
-                >
+                <Button variant="ghost" size="sm" onClick={() => signIn()}>
                   Sign in
-                </Link>
-                <Link
-                  href={'/sign-in'}
-                  className={buttonVariants({
-                    size: 'sm',
-                  })}
-                >
+                </Button>
+                <Button size="sm" onClick={() => signIn()}>
                   Get started <ArrowRight className="ml-1.5 h-5 w-5" />
-                </Link>
+                </Button>
               </>
             ) : (
               <>
