@@ -7,20 +7,17 @@ import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
-import { cn } from '@/lib/utils'
 import { userAuthSchema } from '@/lib/validations/auth'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from '@/components/ui/use-toast'
 import { Loader2 } from 'lucide-react'
 import { BiLogoGoogle as Google } from 'react-icons/bi'
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
-
 type FormData = z.infer<typeof userAuthSchema>
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+const UserAuthForm = () => {
   const {
     register,
     handleSubmit,
@@ -32,7 +29,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isGoogleLoading, setIsGoogleLoading] = React.useState<boolean>(false)
   const searchParams = useSearchParams()
 
-  async function onSubmit(data: FormData) {
+  const onSubmit = async (data: FormData) => {
     setIsLoading(true)
 
     const signInResult = await signIn('email', {
@@ -58,7 +55,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   }
 
   return (
-    <div className={cn('grid gap-6', className)} {...props}>
+    <div className="grid gap-6">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-2">
           <div className="grid gap-1">
@@ -116,3 +113,5 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     </div>
   )
 }
+
+export default UserAuthForm

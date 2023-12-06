@@ -7,6 +7,7 @@ import { Button, buttonVariants } from './ui/button'
 import { ThemeToggle } from './ThemeToggle'
 import { signIn, useSession } from 'next-auth/react'
 import { ArrowRight } from 'lucide-react'
+import { getSignInUrl } from '@/lib/utils'
 
 const Navbar = () => {
   const { data: session } = useSession()
@@ -33,12 +34,23 @@ const Navbar = () => {
                 >
                   Pricing
                 </Link>
-                <Button variant="ghost" size="sm" onClick={() => signIn()}>
+                <Link
+                  href={getSignInUrl()}
+                  className={buttonVariants({
+                    variant: 'ghost',
+                    size: 'sm',
+                  })}
+                >
                   Sign in
-                </Button>
-                <Button size="sm" onClick={() => signIn()}>
+                </Link>
+                <Link
+                  href={getSignInUrl()}
+                  className={buttonVariants({
+                    size: 'sm',
+                  })}
+                >
                   Get started <ArrowRight className="ml-1.5 h-5 w-5" />
-                </Button>
+                </Link>
               </>
             ) : (
               <>
