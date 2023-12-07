@@ -1,8 +1,8 @@
 export function getSignInUrl(path?: string) {
   if (!path) {
-    return '/api/auth/signin'
+    return '/auth/signin'
   }
-  return `/api/auth/signin?from=${path}`
+  return `/auth/signin?from=${path}`
 }
 
-export const registerUrl = '/api/auth/register'
+export const registerUrl = '/auth/register'
