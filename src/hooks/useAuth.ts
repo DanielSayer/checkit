@@ -1,4 +1,4 @@
-import { getSignInUrl } from '@/lib/utils'
+import { getSignInUrl } from '@/lib/appRoutes'
 import { getServerAuthSession } from '@/server/auth'
 import { redirect } from 'next/navigation'
 

@@ -1,13 +1,14 @@
 'use client'
+import { ArrowRight } from 'lucide-react'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import MobileNav from './MobileNav'
-import UserAccountNav from './UserAccountNav'
-import { Button, buttonVariants } from './ui/button'
 import { ThemeToggle } from './ThemeToggle'
-import { signIn, useSession } from 'next-auth/react'
-import { ArrowRight } from 'lucide-react'
-import { getSignInUrl } from '@/lib/utils'
+import UserAccountNav from './UserAccountNav'
+import { buttonVariants } from './ui/button'
+import { MdOutlinePlaylistAddCheck as CheckIt } from 'react-icons/md'
+import { getSignInUrl, registerUrl } from '@/lib/appRoutes'
 
 const Navbar = () => {
   const { data: session } = useSession()
@@ -17,7 +18,10 @@ const Navbar = () => {
       <MaxWidthWrapper>
         <div className="flex h-14 items-center justify-between border-b">
           <Link href="/" className="flex z-40 font-semibold">
-            <span>checkit</span>
+            <span className="flex items-center">
+              <CheckIt className="mr-1 h-5 w-5" />
+              checkit
+            </span>
           </Link>
 
           <MobileNav isAuth={!!session} />
@@ -44,7 +48,7 @@ const Navbar = () => {
                   Sign in
                 </Link>
                 <Link
-                  href={getSignInUrl()}
+                  href={registerUrl}
                   className={buttonVariants({
                     size: 'sm',
                   })}
