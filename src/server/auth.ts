@@ -6,7 +6,9 @@ import {
 } from 'next-auth'
 import DiscordProvider from 'next-auth/providers/discord'
 import GoogleProvider from 'next-auth/providers/google'
+import { Client } from 'postmark'
 
+import { env } from '@/env.mjs'
 import { db } from '@/server/db'
 
 /**
@@ -30,11 +32,8 @@ declare module 'next-auth' {
   // }
 }
 
-/**
- * Options for NextAuth.js used to configure adapters, providers, callbacks, etc.
- *
- * @see https://next-auth.js.org/configuration/options
- */
+const postmarkClient = new Client(env.POSTMARK_API_TOKEN)
+
 export const authOptions: NextAuthOptions = {
   callbacks: {
     session: ({ session, user }) => ({
@@ -51,12 +50,12 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID ?? '',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
+      clientId: env.GOOGLE_CLIENT_ID ?? '',
+      clientSecret: env.GOOGLE_CLIENT_SECRET ?? '',
     }),
     DiscordProvider({
-      clientId: process.env.DISCORD_CLIENT_ID ?? '',
-      clientSecret: process.env.DISCORD_CLIENT_SECRET ?? '',
+      clientId: env.DISCORD_CLIENT_ID ?? '',
+      clientSecret: env.DISCORD_CLIENT_SECRET ?? '',
     }),
   ],
 }

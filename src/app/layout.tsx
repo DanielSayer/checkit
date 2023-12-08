@@ -9,6 +9,7 @@ import Navbar from '@/components/Navbar'
 import { cn } from '@/lib/utils'
 import { TRPCReactProvider } from '@/trpc/react'
 
+import { Toaster } from '@/components/ui/toaster'
 import SessionProvider from '@/components/SessionProvider'
 import { getServerAuthSession } from '@/server/auth'
 
@@ -43,6 +44,7 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             <SessionProvider session={session}>
+              <Toaster />
               <Navbar />
               {children}
             </SessionProvider>

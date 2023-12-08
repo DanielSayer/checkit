@@ -35,28 +35,35 @@ const UserAuthForm = () => {
   const callbackUrl = searchParams?.get('from') || '/dashboard'
 
   const onSubmit = async (data: FormData) => {
-    setIsLoading(true)
+    //setIsLoading(true)
 
-    const signInResult = await signIn('email', {
-      email: data.email.toLowerCase(),
-      redirect: false,
-      callbackUrl: callbackUrl,
-    })
+    // const signInResult = await signIn('email', {
+    //   email: data.email.toLowerCase(),
+    //   redirect: false,
+    //   callbackUrl: callbackUrl,
+    // })
 
-    setIsLoading(false)
+    // setIsLoading(false)
 
-    if (!signInResult?.ok) {
-      return toast({
-        title: 'Something went wrong.',
-        description: 'Your sign in request failed. Please try again.',
-        variant: 'destructive',
-      })
-    }
+    // if (!signInResult?.ok) {
+    //   return toast({
+    //     title: 'Something went wrong.',
+    //     description: 'Your sign in request failed. Please try again.',
+    //     variant: 'destructive',
+    //   })
+    // }
 
     return toast({
-      title: 'Check your email',
-      description: 'We sent you a login link. Be sure to check your spam too.',
+      title: 'Coming soon.',
+      description:
+        'Login with email is currently not available, please use one of our providers',
+      variant: 'destructive',
     })
+
+    // return toast({
+    //   title: 'Check your email',
+    //   description: 'We sent you a login link. Be sure to check your spam too.',
+    // })
   }
 
   return (
@@ -107,7 +114,7 @@ const UserAuthForm = () => {
             setIsGoogleLoading(true)
             signIn('google', { callbackUrl: callbackUrl })
           }}
-          disabled={isLoading || isGoogleLoading}
+          disabled={isLoading || isGoogleLoading || isDiscordLoading}
         >
           {isGoogleLoading ? (
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -123,13 +130,13 @@ const UserAuthForm = () => {
             setIsDiscordLoading(true)
             signIn('discord', { callbackUrl: callbackUrl })
           }}
-          disabled={isLoading || isGoogleLoading}
+          disabled={isLoading || isGoogleLoading || isDiscordLoading}
         >
           {isDiscordLoading ? (
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
           ) : (
             <Discord className="mr-2 h-4 w-4" />
-          )}{' '}
+          )}
           Discord
         </Button>
       </div>
