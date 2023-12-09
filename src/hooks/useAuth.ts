@@ -1,11 +1,11 @@
 import { getSignInUrl } from '@/lib/appRoutes'
-import { getServerAuthSession } from '@/server/auth'
+import { authOptions, getServerAuthSession } from '@/server/auth'
 import { redirect } from 'next/navigation'
 
-const useAuth = async (redirectLocation: string) => {
+const useAuth = async () => {
   const session = await getServerAuthSession()
   if (!session || !session.user.id) {
-    redirect(getSignInUrl(redirectLocation))
+    redirect(authOptions?.pages?.signIn || getSignInUrl())
   }
 
   return { user: session.user }
