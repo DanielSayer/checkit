@@ -6,7 +6,6 @@ import { getSignInUrl, registerUrl } from '../appRoutes'
 type NavOption = {
   title: ReactNode
   ref: string
-  className?: string
 }
 
 export const notAuthorizedNavOptions: NavOption[] = [
@@ -44,6 +43,5 @@ export const authorizedNavOptions: NavOption[] = [
   {
     title: 'Log out',
     ref: '/api/auth/signout',
-    className: buttonVariants({ size: 'sm' }),
   },
 ]
