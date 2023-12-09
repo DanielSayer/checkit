@@ -5,7 +5,8 @@ import {
 } from '@/lib/constants/MobileNavOptions'
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
-import { useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 interface MobileNavProps {
   isAuth: boolean
@@ -14,6 +15,20 @@ interface MobileNavProps {
 const MobileNav = ({ isAuth }: MobileNavProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const toggleOpen = () => setIsOpen((prev) => !prev)
+  const pathName = usePathname()
+
+  useEffect(() => {
+    if (isOpen) {
+      toggleOpen()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathName])
+
+  const closeOnCurrent = (href: string) => {
+    if (pathName === href) {
+      setIsOpen(false)
+    }
+  }
 
   return (
     <div className="sm:hidden">
@@ -29,6 +44,7 @@ const MobileNav = ({ isAuth }: MobileNavProps) => {
                   <>
                     <li key={i}>
                       <Link
+                        onClick={() => closeOnCurrent(o.ref)}
                         className="flex items-center w-full font-semibold text-foreground/90"
                         href={o.ref}
                       >
@@ -42,6 +58,7 @@ const MobileNav = ({ isAuth }: MobileNavProps) => {
                   <>
                     <li key={i}>
                       <Link
+                        onClick={() => closeOnCurrent(o.ref)}
                         className="flex items-center w-full font-semibold text-foreground/90"
                         href={o.ref}
                       >

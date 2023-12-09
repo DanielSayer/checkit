@@ -1,18 +1,20 @@
 import Link from 'next/link'
+import { Metadata } from 'next'
 
 import UserAuthForm from '@/components/UserAuthForm'
 import { MdOutlinePlaylistAddCheck as CheckIt } from 'react-icons/md'
-export const metadata = {
+
+export const metadata: Metadata = {
   title: 'Create an account',
   description: 'Create an account to get started.',
 }
 
 const Page = () => {
   return (
-    <main className="grid flex-col items-center justify-center h-[calc(100vh-56px)] lg:max-w-none lg:grid-cols-2">
+    <div className="container grid flex-col items-center justify-center h-[calc(100vh-56px)] w-screen lg:max-w-none lg:grid-cols-2">
       <div className="hidden h-full bg-muted lg:block" />
       <div className="lg:p-8">
-        <div className="mx-2 flex flex-col justify-center space-y-6 sm:mx-auto sm:w-[350px]">
+        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
             <CheckIt className="mx-auto h-8 w-8" />
             <h1 className="text-2xl font-semibold tracking-tight">
@@ -36,7 +38,7 @@ const Page = () => {
           </p>
         </div>
       </div>
-    </main>
+    </div>
   )
 }
 

@@ -1,6 +1,7 @@
 import { buttonVariants } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
 import { ReactNode } from 'react'
+import { getSignInUrl, registerUrl } from '../appRoutes'
 
 type NavOption = {
   title: ReactNode
@@ -15,11 +16,11 @@ export const notAuthorizedNavOptions: NavOption[] = [
         Get Started <ArrowRight className="ml-2 h-5 w-5" />
       </>
     ),
-    ref: '/sign-up',
+    ref: registerUrl,
   },
   {
     title: 'Sign In',
-    ref: '/auth/api/sign-in',
+    ref: getSignInUrl(),
   },
   {
     title: 'Pricing',
@@ -40,5 +41,9 @@ export const authorizedNavOptions: NavOption[] = [
     title: 'Settings',
     ref: '/settings',
   },
-  { title: 'Log out', ref: '/', className: buttonVariants({ size: 'sm' }) },
+  {
+    title: 'Log out',
+    ref: '/api/auth/signout',
+    className: buttonVariants({ size: 'sm' }),
+  },
 ]
