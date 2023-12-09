@@ -1,7 +1,7 @@
 import useAuth from '@/hooks/useAuth'
 
 const Page = async () => {
-  await useAuth('dashboard')
+  await useAuth()
 
   return <div>Dashboard</div>
 }
