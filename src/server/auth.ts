@@ -7,7 +7,6 @@ import {
 import CredentialsProvider from 'next-auth/providers/credentials'
 import DiscordProvider from 'next-auth/providers/discord'
 import GoogleProvider from 'next-auth/providers/google'
-import { Client } from 'postmark'
 
 import { env } from '@/env.mjs'
 import { db } from '@/server/db'
@@ -32,8 +31,6 @@ declare module 'next-auth' {
   //   // role: UserRole;
   // }
 }
-
-const postmarkClient = new Client(env.POSTMARK_API_TOKEN)
 
 export const authOptions: NextAuthOptions = {
   callbacks: {

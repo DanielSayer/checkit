@@ -1,4 +1,4 @@
-import * as z from 'zod'
+import { z } from 'zod'
 
 export const userAuthSchema = z
   .object({
@@ -18,7 +18,7 @@ export const userAuthSchema = z
       return values.password === values.confirmPassword
     },
     {
-      message: 'Passwords must match!',
+      message: 'Passwords must match',
       path: ['confirmPassword'],
     }
   )

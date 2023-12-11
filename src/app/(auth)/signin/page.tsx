@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Metadata } from 'next'
 
-import LoginForm from '@/components/auth/LoginForm'
+import SignInForm from '@/components/auth/LoginForm'
 import { MdOutlinePlaylistAddCheck as CheckIt } from 'react-icons/md'
 import { registerUrl } from '@/lib/appRoutes'
 
@@ -23,7 +23,7 @@ const Page = () => {
             Enter your email to sign in to your account
           </p>
         </div>
-        <LoginForm />
+        <SignInForm />
         <p className="px-8 text-center text-sm text-muted-foreground">
           <Link
             href="/register"

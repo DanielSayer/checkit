@@ -1,6 +1,5 @@
 'use client'
 
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useSearchParams } from 'next/navigation'
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
@@ -16,7 +15,7 @@ import ThirdPartySignIn from './ThirdPartySignIn'
 
 type FormData = z.infer<typeof userAuthSchema>
 
-const LoginForm = () => {
+const SignInForm = () => {
   const { register, handleSubmit } = useForm<FormData>()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const searchParams = useSearchParams()
@@ -99,4 +98,4 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm
+export default SignInForm

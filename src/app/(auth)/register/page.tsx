@@ -1,9 +1,10 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 
-import LoginForm from '@/components/auth/LoginForm'
+import RegisterForm from '@/components/auth/RegisterForm'
 import { getSignInUrl } from '@/lib/appRoutes'
 import { MdOutlinePlaylistAddCheck as CheckIt } from 'react-icons/md'
+import { api } from '@/trpc/server'
 
 export const metadata: Metadata = {
   title: 'Create an account',
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 const Page = () => {
   return (
-    <div className="container grid flex-col items-center justify-center h-[calc(100vh-56px)] w-screen lg:max-w-none lg:grid-cols-2">
+    <div className="container px-0 grid flex-col items-center justify-center h-[calc(100vh-56px)] w-screen lg:max-w-none lg:grid-cols-2">
       <div className="hidden h-full bg-muted lg:block" />
       <div className="lg:p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
@@ -25,7 +26,7 @@ const Page = () => {
               Enter your email below to create your account
             </p>
           </div>
-          <LoginForm />
+          <RegisterForm />
           <p className="px-8 text-center text-sm text-muted-foreground">
             Already have an accout?{' '}
             <Link
