@@ -1,7 +1,8 @@
-import Link from 'next/link'
 import { Metadata } from 'next'
+import Link from 'next/link'
 
-import UserAuthForm from '@/components/UserAuthForm'
+import LoginForm from '@/components/auth/LoginForm'
+import { getSignInUrl } from '@/lib/appRoutes'
 import { MdOutlinePlaylistAddCheck as CheckIt } from 'react-icons/md'
 
 export const metadata: Metadata = {
@@ -24,17 +25,15 @@ const Page = () => {
               Enter your email below to create your account
             </p>
           </div>
-          <UserAuthForm />
+          <LoginForm />
           <p className="px-8 text-center text-sm text-muted-foreground">
-            By clicking continue, you agree to our{' '}
-            <Link href="/terms" className="underline underline-offset-4">
-              Terms of Service
-            </Link>{' '}
-            and{' '}
-            <Link href="/privacy" className="underline underline-offset-4">
-              Privacy Policy
+            Already have an accout?{' '}
+            <Link
+              href={getSignInUrl()}
+              className="underline underline-offset-4"
+            >
+              Sign in
             </Link>
-            .
           </p>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import { buttonVariants } from '@/components/ui/button'
-import { getSignInUrl } from '@/lib/appRoutes'
+import { registerUrl } from '@/lib/appRoutes'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -28,7 +28,7 @@ export default function Home() {
             size: 'lg',
             className: 'mt-5',
           })}
-          href={getSignInUrl()}
+          href={registerUrl}
         >
           Get started <ArrowRight className="ml-2 h-5 w-5" />
         </Link>
