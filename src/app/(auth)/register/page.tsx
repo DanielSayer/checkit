@@ -4,7 +4,6 @@ import Link from 'next/link'
 import RegisterForm from '@/components/auth/RegisterForm'
 import { getSignInUrl } from '@/lib/appRoutes'
 import { MdOutlinePlaylistAddCheck as CheckIt } from 'react-icons/md'
-import { api } from '@/trpc/server'
 
 export const metadata: Metadata = {
   title: 'Create an account',

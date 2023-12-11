@@ -9,7 +9,7 @@ export const userAuthSchema = z
       .min(8, 'Must be at least 8 characters in length')
       .regex(
         new RegExp('.*[`~<>?,./!@#$%^&*()\\-_+="\'|{}\\[\\];:\\\\].*'),
-        'Must contain at least one special character'
+        'Must contain at least one special character',
       ),
     confirmPassword: z.string(),
   })
@@ -20,5 +20,5 @@ export const userAuthSchema = z
     {
       message: 'Passwords must match',
       path: ['confirmPassword'],
-    }
+    },
   )

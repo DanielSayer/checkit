@@ -3,7 +3,6 @@ import { Metadata } from 'next'
 
 import SignInForm from '@/components/auth/LoginForm'
 import { MdOutlinePlaylistAddCheck as CheckIt } from 'react-icons/md'
-import { registerUrl } from '@/lib/appRoutes'
 
 export const metadata: Metadata = {
   title: 'Login',
