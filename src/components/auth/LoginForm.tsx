@@ -30,7 +30,6 @@ const SignInForm = () => {
 
   const onSubmit = async (data: FormData) => {
     setIsLoading(true)
-
     const signInResult = await signIn('credentials', {
       ...data,
       redirect: false,

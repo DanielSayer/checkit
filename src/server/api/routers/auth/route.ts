@@ -31,34 +31,3 @@ export const authRouter = createTRPCRouter({
       return { ok: true }
     }),
 })
-
-const errorMessage = 'Email or password is incorrect'
-export async function authorizeCredentials(
-  email: string | undefined,
-  password: string | undefined,
-) {
-  if (!email || !password) {
-    throw new Error('Please enter an email and password')
-  }
-
-  const user = await db.user.findUnique({
-    where: {
-      email,
-    },
-  })
-
-  if (!user) {
-    throw new Error(errorMessage)
-  }
-
-  if (!user.password) {
-    throw new Error('Please sign in with the provider you registered with')
-  }
-
-  const passwordsMatch = await compare(password, user.password)
-
-  if (!passwordsMatch) {
-    throw new Error(errorMessage)
-  }
-  return user
-}
