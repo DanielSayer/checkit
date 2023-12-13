@@ -1,5 +1,5 @@
 import { createTRPCRouter, publicProcedure } from '@/server/api/trpc'
-import bcrypt from 'bcrypt'
+import { hash, compare } from 'bcryptjs'
 import { userAuthSchema } from './authSchemas'
 import { TRPCClientError } from '@trpc/client'
 import { db } from '@/server/db'
@@ -18,7 +18,7 @@ export const authRouter = createTRPCRouter({
         throw new TRPCClientError('User already exists')
       }
 
-      const hashedPassword = await bcrypt.hash(input.password, 10)
+      const hashedPassword = await hash(input.password, 10)
 
       await ctx.db.user.create({
         data: {
@@ -38,7 +38,7 @@ export async function authorizeCredentials(
   password: string | undefined,
 ) {
   if (!email || !password) {
-    throw new Error(errorMessage)
+    throw new Error('Please enter an email and password')
   }
 
   const user = await db.user.findUnique({
@@ -55,7 +55,7 @@ export async function authorizeCredentials(
     throw new Error('Please sign in with the provider you registered with')
   }
 
-  const passwordsMatch = await bcrypt.compare(password, user.password)
+  const passwordsMatch = await compare(password, user.password)
 
   if (!passwordsMatch) {
     throw new Error(errorMessage)

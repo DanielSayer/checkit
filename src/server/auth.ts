@@ -1,5 +1,4 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import bcrypt from 'bcrypt'
 import {
   getServerSession,
   type DefaultSession,
