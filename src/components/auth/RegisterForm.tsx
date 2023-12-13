@@ -9,12 +9,12 @@ import * as z from 'zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { userAuthSchema } from '@/lib/validations/auth'
+import { userRegisterSchema } from '@/lib/validations/auth'
 import { api } from '@/trpc/react'
 import { Loader2 } from 'lucide-react'
 import ThirdPartySignIn from './ThirdPartySignIn'
 
-type FormData = z.infer<typeof userAuthSchema>
+type FormData = z.infer<typeof userRegisterSchema>
 
 const RegisterForm = () => {
   const {
@@ -23,7 +23,7 @@ const RegisterForm = () => {
     setError,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(userAuthSchema),
+    resolver: zodResolver(userRegisterSchema),
   })
   const router = useRouter()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)

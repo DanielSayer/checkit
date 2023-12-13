@@ -1,6 +1,6 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
@@ -8,49 +8,41 @@ import * as z from 'zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { toast } from '@/components/ui/use-toast'
-import { userAuthSchema } from '@/lib/validations/auth'
+import { userSignInSchema } from '@/lib/validations/auth'
 import { Loader2 } from 'lucide-react'
+import { signIn } from 'next-auth/react'
 import ThirdPartySignIn from './ThirdPartySignIn'
+import { registerUrl } from '@/lib/appRoutes'
 
-type FormData = z.infer<typeof userAuthSchema>
+type FormData = z.infer<typeof userSignInSchema>
 
 const SignInForm = () => {
-  const { register, handleSubmit } = useForm<FormData>()
+  const router = useRouter()
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm<FormData>()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const searchParams = useSearchParams()
   const callbackUrl = searchParams?.get('from') || '/dashboard'
 
   const onSubmit = async (data: FormData) => {
-    //setIsLoading(true)
+    setIsLoading(true)
 
-    // const signInResult = await signIn('email', {
-    //   email: data.email.toLowerCase(),
-    //   redirect: false,
-    //   callbackUrl: callbackUrl,
-    // })
-
-    // setIsLoading(false)
-
-    // if (!signInResult?.ok) {
-    //   return toast({
-    //     title: 'Something went wrong.',
-    //     description: 'Your sign in request failed. Please try again.',
-    //     variant: 'destructive',
-    //   })
-    // }
-
-    return toast({
-      title: 'Coming soon.',
-      description:
-        'Login with email is currently not available, please use one of our providers',
-      variant: 'destructive',
+    const signInResult = await signIn('credentials', {
+      ...data,
+      redirect: false,
     })
-
-    // return toast({
-    //   title: 'Check your email',
-    //   description: 'We sent you a login link. Be sure to check your spam too.',
-    // })
+    if (!signInResult?.ok || signInResult?.error) {
+      setError('root', {
+        message: signInResult?.error ?? 'Something went wrong',
+      })
+      setIsLoading(false)
+      return
+    }
+    router.push(callbackUrl)
   }
 
   return (
@@ -87,6 +79,9 @@ const SignInForm = () => {
             {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             Sign In
           </Button>
+          {errors?.root && (
+            <p className="px-1 text-xs text-red-500">{errors.root.message}</p>
+          )}
         </div>
       </form>
       <ThirdPartySignIn

@@ -1,4 +1,5 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import bcrypt from 'bcrypt'
 import {
   getServerSession,
   type DefaultSession,
@@ -10,6 +11,7 @@ import GoogleProvider from 'next-auth/providers/google'
 
 import { env } from '@/env.mjs'
 import { db } from '@/server/db'
+import { authorizeCredentials } from './api/routers/auth/auth'
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -58,11 +60,14 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: 'credentials',
       credentials: {
-        username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
+        email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        return await db.user.findFirst()
+        return await authorizeCredentials(
+          credentials?.email,
+          credentials?.password,
+        )
       },
     }),
   ],

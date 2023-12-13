@@ -1,6 +1,6 @@
 import * as z from 'zod'
 
-export const userAuthSchema = z
+export const userRegisterSchema = z
   .object({
     name: z.string().min(1, 'Name is required'),
     email: z.string().email(),
@@ -22,3 +22,8 @@ export const userAuthSchema = z
       path: ['confirmPassword'],
     },
   )
+
+export const userSignInSchema = z.object({
+  email: z.string(),
+  password: z.string(),
+})
