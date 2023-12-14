@@ -13,6 +13,7 @@ import { userRegisterSchema } from '@/lib/validations/auth'
 import { api } from '@/trpc/react'
 import { Loader2 } from 'lucide-react'
 import ThirdPartySignIn from './ThirdPartySignIn'
+import { signIn } from 'next-auth/react'
 
 type FormData = z.infer<typeof userRegisterSchema>
 
@@ -39,6 +40,17 @@ const RegisterForm = () => {
   const onSubmit = async (data: FormData) => {
     setIsLoading(true)
     await mutation.mutateAsync(data)
+    const signInResult = await signIn('credentials', {
+      ...data,
+      redirect: false,
+    })
+    if (!signInResult?.ok || signInResult?.error) {
+      setError('root', {
+        message: 'Something went wrong, please contact support',
+      })
+      setIsLoading(false)
+      return
+    }
     router.push(callbackUrl)
   }
 
