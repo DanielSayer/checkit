@@ -12,7 +12,6 @@ import { userSignInSchema } from '@/lib/validations/auth'
 import { Loader2 } from 'lucide-react'
 import { signIn } from 'next-auth/react'
 import ThirdPartySignIn from './ThirdPartySignIn'
-import { registerUrl } from '@/lib/appRoutes'
 
 type FormData = z.infer<typeof userSignInSchema>
 
