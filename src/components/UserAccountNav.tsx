@@ -10,7 +10,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
-import { cn } from '@/lib/utils'
 
 interface UserAccountNavProps {
   email: string | undefined
@@ -79,7 +78,7 @@ const UserAccountNav = ({ email, imageUrl, name }: UserAccountNavProps) => {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer justify-end">
+        <DropdownMenuItem className="justify-end">
           <Link
             href="/api/auth/signout"
             className={buttonVariants({
