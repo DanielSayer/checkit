@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { api } from '@/trpc/react'
 import { useRouter } from 'next/navigation'
 import { useToast } from './ui/use-toast'
+import { getEditNotesUrl } from '@/lib/appRoutes'
 
 interface CreateNotesButtonProps extends ButtonProps {}
 
@@ -16,7 +17,7 @@ const CreateNotesButton = ({ className, ...props }: CreateNotesButtonProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const createNotes = api.notes.createNote.useMutation({
     onSuccess: (id) => {
-      router.push(id)
+      router.push(getEditNotesUrl(id))
     },
     onError: () => {
       setIsLoading(false)

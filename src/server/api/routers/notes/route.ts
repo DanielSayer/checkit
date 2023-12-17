@@ -11,4 +11,21 @@ export const notesRouter = createTRPCRouter({
 
     return createdNote.id
   }),
+  getUserNotes: protectedProcedure.query(async ({ ctx }) => {
+    const userId = ctx.session.user.id
+
+    return ctx.db.note.findMany({
+      where: {
+        authorId: userId,
+      },
+      select: {
+        id: true,
+        title: true,
+        updatedAt: true,
+      },
+      orderBy: {
+        updatedAt: 'desc',
+      },
+    })
+  }),
 })
