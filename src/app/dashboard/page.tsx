@@ -26,7 +26,7 @@ const Page = async () => {
                 <NotesCard
                   id={note.id}
                   title={note.title}
-                  createdAt={note.updatedAt}
+                  editedAt={note.updatedAt}
                 />
               </li>
             ))}

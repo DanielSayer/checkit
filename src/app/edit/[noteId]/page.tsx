@@ -24,7 +24,15 @@ const Page = async ({ params }: EditPageProps) => {
     notFound()
   }
 
-  return <Editor note={note} />
+  return (
+    <Editor
+      note={{
+        id: note.id,
+        title: note.title,
+        content: note.content,
+      }}
+    />
+  )
 }
 
 export default Page

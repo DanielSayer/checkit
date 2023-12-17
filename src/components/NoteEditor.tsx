@@ -11,9 +11,13 @@ import * as z from 'zod'
 import { toast } from '@/components/ui/use-toast'
 import '@/styles/editor.css'
 import MaxWidthWrapper from './MaxWidthWrapper'
+import { Button } from './ui/button'
+import { Icons } from './Icons'
+import { api } from '@/trpc/react'
+import { Note } from '@prisma/client'
 
 interface EditorProps {
-  note: any
+  note: Pick<Note, 'id' | 'title' | 'content'>
 }
 
 const noteSchema = z.object({
@@ -31,6 +35,15 @@ export function Editor({ note }: EditorProps) {
   const router = useRouter()
   const [isSaving, setIsSaving] = useState<boolean>(false)
   const [isMounted, setIsMounted] = useState<boolean>(false)
+  const mutation = api.notes.saveNote.useMutation({
+    onError: () => {
+      toast({
+        title: 'Something went wrong.',
+        description: 'Your note was not saved. Please try again.',
+        variant: 'destructive',
+      })
+    },
+  })
 
   const initializeEditor = useCallback(async () => {
     const EditorJS = (await import('@editorjs/editorjs')).default
@@ -88,18 +101,12 @@ export function Editor({ note }: EditorProps) {
 
     const blocks = await ref.current?.save()
 
-    const response = true
-
+    await mutation.mutateAsync({
+      id: note.id,
+      title: data.title,
+      content: blocks,
+    })
     setIsSaving(false)
-
-    if (!response) {
-      return toast({
-        title: 'Something went wrong.',
-        description: 'Your note was not saved. Please try again.',
-        variant: 'destructive',
-      })
-    }
-
     router.refresh()
 
     return toast({
@@ -114,7 +121,19 @@ export function Editor({ note }: EditorProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <MaxWidthWrapper>
-        <div className="prose prose-stone mx-auto w-[800px] dark:prose-invert mt-20">
+        <div className="flex justify-end my-6">
+          <Button type="submit" disabled={isSaving}>
+            {isSaving ? (
+              <>
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              <span>Save</span>
+            )}
+          </Button>
+        </div>
+        <div className="prose prose-stone mx-auto dark:prose-invert">
           <TextareaAutosize
             autoFocus
             id="title"

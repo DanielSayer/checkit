@@ -7,10 +7,10 @@ import Link from 'next/link'
 interface NotesCardProps {
   id: string
   title: string
-  createdAt: Date
+  editedAt: Date
 }
 
-const NotesCard: React.FC<NotesCardProps> = ({ id, title, createdAt }) => {
+const NotesCard = ({ id, title, editedAt }: NotesCardProps) => {
   return (
     <div key={id}>
       <Link
@@ -20,7 +20,7 @@ const NotesCard: React.FC<NotesCardProps> = ({ id, title, createdAt }) => {
         {title}
       </Link>
       <div className="text-muted-foreground">
-        Created at {format(createdAt, 'MMM yyyy')}
+        Last edited at {format(editedAt, "HH:mm 'on' dd MMM yyyy")}
       </div>
     </div>
   )
