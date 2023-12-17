@@ -6,6 +6,7 @@ import {
   Loader2,
   Menu,
   Moon,
+  Plus,
   Sun,
   User,
 } from 'lucide-react'
@@ -16,6 +17,7 @@ import {
 } from 'react-icons/bi'
 
 export const Icons = {
+  add: Plus,
   arrowRight: ArrowRight,
   discord: Discord,
   gem: Gem,
