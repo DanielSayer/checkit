@@ -1,13 +1,9 @@
 'use client'
 
-import { Loader2 } from 'lucide-react'
 import { signIn } from 'next-auth/react'
 import { Button } from '../ui/button'
-import {
-  BiLogoGoogle as Google,
-  BiLogoDiscordAlt as Discord,
-} from 'react-icons/bi'
 import { useState } from 'react'
+import { Icons } from '../Icons'
 
 interface ThirdPartySignInProps {
   isLoading: boolean
@@ -53,9 +49,9 @@ const ThirdPartySignIn = ({
           disabled={isLoading || isGoogleLoading || isDiscordLoading}
         >
           {isGoogleLoading ? (
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
           ) : (
-            <Google className="mr-2 h-4 w-4" />
+            <Icons.google className="mr-2 h-4 w-4" />
           )}
           Google
         </Button>
@@ -69,9 +65,9 @@ const ThirdPartySignIn = ({
           disabled={isLoading || isGoogleLoading || isDiscordLoading}
         >
           {isDiscordLoading ? (
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
           ) : (
-            <Discord className="mr-2 h-4 w-4" />
+            <Icons.discord className="mr-2 h-4 w-4" />
           )}
           Discord
         </Button>

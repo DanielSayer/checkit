@@ -1,7 +1,7 @@
+import { Icons } from '@/components/Icons'
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import { buttonVariants } from '@/components/ui/button'
 import { registerUrl } from '@/lib/appRoutes'
-import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -30,7 +30,7 @@ export default function Home() {
           })}
           href={registerUrl}
         >
-          Get started <ArrowRight className="ml-2 h-5 w-5" />
+          Get started <Icons.arrowRight className="ml-2 h-5 w-5" />
         </Link>
       </MaxWidthWrapper>
 

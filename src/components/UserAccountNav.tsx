@@ -1,4 +1,3 @@
-import { Gem } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Icons } from './Icons'
@@ -62,7 +61,7 @@ const UserAccountNav = ({ email, imageUrl, name }: UserAccountNavProps) => {
             <Link href="/dashboard/billing">TODO: //Manage Sub</Link>
           ) : (
             <Link href="/pricing">
-              Upgrade <Gem className="text-primary h-4 w-4 ml-1.5" />
+              Upgrade <Icons.gem className="text-primary h-4 w-4 ml-1.5" />
             </Link>
           )}
         </DropdownMenuItem>

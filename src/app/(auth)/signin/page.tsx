@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 
 import SignInForm from '@/components/auth/LoginForm'
-import { MdOutlinePlaylistAddCheck as CheckIt } from 'react-icons/md'
+import { Icons } from '@/components/Icons'
 
 export const metadata: Metadata = {
   title: 'Login',
@@ -14,7 +14,7 @@ const Page = () => {
     <div className="container flex h-[calc(100vh-56px)] w-screen flex-col items-center justify-center">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
-          <CheckIt className="mx-auto h-6 w-6" />
+          <Icons.logo className="mx-auto h-6 w-6" />
           <h1 className="text-2xl font-semibold tracking-tight">
             Welcome back
           </h1>

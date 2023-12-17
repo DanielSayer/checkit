@@ -1,7 +1,6 @@
-import { buttonVariants } from '@/components/ui/button'
-import { ArrowRight } from 'lucide-react'
 import { ReactNode } from 'react'
 import { getSignInUrl, registerUrl } from '../appRoutes'
+import { Icons } from '@/components/Icons'
 
 type NavOption = {
   title: ReactNode
@@ -12,7 +11,7 @@ export const notAuthorizedNavOptions: NavOption[] = [
   {
     title: (
       <>
-        Get Started <ArrowRight className="ml-2 h-5 w-5" />
+        Get Started <Icons.arrowRight className="ml-2 h-5 w-5" />
       </>
     ),
     ref: registerUrl,

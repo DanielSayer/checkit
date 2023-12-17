@@ -11,7 +11,9 @@ import { authorizeCredentials } from './auth/authorise'
 export const authOptions: NextAuthOptions = {
   callbacks: {
     session: ({ session, token }) => {
-      session.user.id = token.id
+      if (token) {
+        session.user.id = token.id
+      }
       return session
     },
     jwt: ({ token, account, user }) => {

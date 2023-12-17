@@ -11,9 +11,9 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { userRegisterSchema } from '@/lib/validations/auth'
 import { api } from '@/trpc/react'
-import { Loader2 } from 'lucide-react'
 import ThirdPartySignIn from './ThirdPartySignIn'
 import { signIn } from 'next-auth/react'
+import { Icons } from '../Icons'
 
 type FormData = z.infer<typeof userRegisterSchema>
 
@@ -128,7 +128,9 @@ const RegisterForm = () => {
             )}
           </div>
           <Button disabled={isLoading}>
-            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            {isLoading && (
+              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+            )}
             Create Account
           </Button>
           {errors?.root && (

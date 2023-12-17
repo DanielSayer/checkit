@@ -1,5 +1,4 @@
 'use client'
-import { ArrowRight } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import MaxWidthWrapper from './MaxWidthWrapper'
@@ -7,8 +6,8 @@ import MobileNav from './MobileNav'
 import { ThemeToggle } from './ThemeToggle'
 import UserAccountNav from './UserAccountNav'
 import { buttonVariants } from './ui/button'
-import { MdOutlinePlaylistAddCheck as CheckIt } from 'react-icons/md'
 import { getSignInUrl, registerUrl } from '@/lib/appRoutes'
+import { Icons } from './Icons'
 
 const Navbar = () => {
   const { data: session } = useSession()
@@ -19,7 +18,7 @@ const Navbar = () => {
         <div className="flex h-14 items-center justify-between border-b">
           <Link href="/" className="flex z-40 font-semibold">
             <span className="flex items-center">
-              <CheckIt className="mr-1 h-5 w-5" />
+              <Icons.logo className="mr-1 h-5 w-5" />
               checkit
             </span>
           </Link>
@@ -53,7 +52,7 @@ const Navbar = () => {
                     size: 'sm',
                   })}
                 >
-                  Get started <ArrowRight className="ml-1.5 h-5 w-5" />
+                  Get started <Icons.arrowRight className="ml-1.5 h-5 w-5" />
                 </Link>
               </>
             ) : (

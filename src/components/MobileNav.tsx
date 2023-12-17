@@ -3,10 +3,10 @@ import {
   authorizedNavOptions,
   notAuthorizedNavOptions,
 } from '@/lib/constants/MobileNavOptions'
-import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { Icons } from './Icons'
 
 interface MobileNavProps {
   isAuth: boolean
@@ -32,7 +32,7 @@ const MobileNav = ({ isAuth }: MobileNavProps) => {
 
   return (
     <div className="sm:hidden">
-      <Menu
+      <Icons.menu
         onClick={toggleOpen}
         className="relative z-50 h-5 w-5 text-muted-foreground"
       />
