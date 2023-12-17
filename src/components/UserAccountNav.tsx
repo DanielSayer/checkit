@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
+import { cn } from '@/lib/utils'
 
 interface UserAccountNavProps {
   email: string | undefined
@@ -54,19 +55,28 @@ const UserAccountNav = ({ email, imageUrl, name }: UserAccountNavProps) => {
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/dashboard" className="hover:underline cursor-pointer">
+            Dashboard
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           {true ? (
-            <Link href="/dashboard/billing">TODO: //Manage Sub</Link>
+            <Link
+              href="/dashboard/billing"
+              className="hover:underline cursor-pointer"
+            >
+              TODO: //Manage Sub
+            </Link>
           ) : (
-            <Link href="/pricing">
+            <Link href="/pricing" className="hover:underline cursor-pointer">
               Upgrade <Icons.gem className="text-primary h-4 w-4 ml-1.5" />
             </Link>
           )}
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href="/settings">Settings</Link>
+          <Link href="/settings" className="hover:underline cursor-pointer">
+            Settings
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="cursor-pointer justify-end">
