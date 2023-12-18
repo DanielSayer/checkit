@@ -6,6 +6,7 @@ export function getSignInUrl(path?: string) {
 }
 
 export const registerUrl = '/register'
+export const dashboardUrl = '/dashboard'
 
 export function getEditNotesUrl(id: string) {
   return `/edit/${id}`

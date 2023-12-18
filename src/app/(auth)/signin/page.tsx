@@ -1,15 +1,22 @@
-import Link from 'next/link'
 import { Metadata } from 'next'
+import Link from 'next/link'
 
-import SignInForm from '@/components/auth/LoginForm'
 import { Icons } from '@/components/Icons'
+import SignInForm from '@/components/auth/LoginForm'
+import { dashboardUrl } from '@/lib/appRoutes'
+import { getServerAuthSession } from '@/server/auth'
+import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Login',
   description: 'Login to your account',
 }
 
-const Page = () => {
+const Page = async () => {
+  const session = await getServerAuthSession()
+  if (session?.user) {
+    redirect(dashboardUrl)
+  }
   return (
     <div className="container flex h-[calc(100vh-56px)] w-screen flex-col items-center justify-center">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">

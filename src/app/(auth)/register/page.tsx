@@ -2,15 +2,21 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 
 import RegisterForm from '@/components/auth/RegisterForm'
-import { getSignInUrl } from '@/lib/appRoutes'
+import { dashboardUrl, getSignInUrl } from '@/lib/appRoutes'
 import { Icons } from '@/components/Icons'
+import { getServerAuthSession } from '@/server/auth'
+import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Create an account',
   description: 'Create an account to get started.',
 }
 
-const Page = () => {
+const Page = async () => {
+  const session = await getServerAuthSession()
+  if (session?.user) {
+    redirect(dashboardUrl)
+  }
   return (
     <div className="container px-0 grid flex-col items-center justify-center h-[calc(100vh-56px)] w-screen lg:max-w-none lg:grid-cols-2">
       <div className="hidden h-full bg-muted lg:block" />
