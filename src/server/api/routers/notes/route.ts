@@ -1,18 +1,21 @@
 import { TRPCClientError } from '@trpc/client'
 import { createTRPCRouter, protectedProcedure } from '../../trpc'
-import { noteSchema } from './noteSchemas'
+import { createNoteSchema, noteSchema } from './noteSchemas'
 
 export const notesRouter = createTRPCRouter({
-  createNote: protectedProcedure.mutation(async ({ ctx }) => {
-    const createdNote = await ctx.db.note.create({
-      data: {
-        title: 'New Note',
-        authorId: ctx.session.user.id,
-      },
-    })
+  createNote: protectedProcedure
+    .input(createNoteSchema)
+    .mutation(async ({ ctx, input }) => {
+      const createdNote = await ctx.db.note.create({
+        data: {
+          title: input.title ?? 'New Note',
+          content: input.content ?? '',
+          authorId: ctx.session.user.id,
+        },
+      })
 
-    return createdNote.id
-  }),
+      return createdNote.id
+    }),
   getUserNotes: protectedProcedure.query(async ({ ctx }) => {
     const userId = ctx.session.user.id
 
